@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ask Johannesburg anything!!!!!!!!</title>
+    
+    <link rel="stylesheet" href="/assets/index.99cec11a.css">
+  </head>
+  <body>
+
+    <div class="bg">
+      <div class="boxBg">
+        <div class="title"><h1>
+          ASK JOHANNESBURG ANYTHING!!!!!!!!!!!!!!!
+          </h1>
+          <h2>
+            he loves answering questions!!!
+          </h2>
+        </div>
+
+        <h1>send a question!</h1>
+        <input type="text" id="message"><br>
+        <input type="button" id="submit" value="submit" onclick="submit()"><br>
+
+      </div>
+    </div>
+
+    <script>
+      function submit(){
+        var msg = document.getElementById("message")
+        console.log(msg.value)
+
+        let xhr = new XMLHttpRequest();
+          xhr.open("POST", "http://localhost:8080/AJA-add")
+
+          xhr.setRequestHeader("Accept", "application/json");
+          xhr.setRequestHeader("Content-Type", "application/json");
+          
+          xhr.onload = function(){
+            if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+              user = xhr.response
+              
+            }
+          }
+
+          let data = '{"message": "'+msg.value+'"}'
+
+          xhr.send(data)
+      }
+    </script>
+  </body>
+</html>
